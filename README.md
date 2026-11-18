@@ -1,66 +1,145 @@
-# Backend Tutorial Project
+# Intro to Backend API
 
-A beginner-friendly REST API built with Node.js, Express, and MongoDB Atlas (via Mongoose).
+A RESTful backend application built using **Node.js, Express.js, and MongoDB Atlas**. The project demonstrates core backend development concepts, including database integration, CRUD operations, and user authentication with password hashing.
 
-## Requirements
-- Node.js LTS and npm
-- Git
-- MongoDB Atlas account
-- Postman (or another API client)
+## 🚀 Tech Stack
 
-## Setup on Windows (PowerShell)
-1. Extract this project and open the folder in VS Code.
-2. Install dependencies:
-   ```powershell
-   npm install
-   ```
-3. Copy `.env.example` to `.env` and replace `MONGODB_URI` with your own MongoDB Atlas connection string. Keep `.env` private; it is ignored by Git.
-4. Start the development server:
-   ```powershell
-   npm run dev
-   ```
-5. Visit `http://localhost:5000/` to check the server.
+| Technology | Purpose |
+|---|---|
+| **Node.js** | JavaScript runtime environment |
+| **Express.js** | Backend web framework |
+| **MongoDB Atlas** | Cloud-based NoSQL database |
+| **Mongoose** | MongoDB object data modeling (ODM) |
+| **Bcrypt** | Secure password hashing |
+| **Nodemon** | Automatic server restart during development |
 
-## API endpoints
-Base URL: `http://localhost:5000`
+## 📁 Project Structure
 
-| Method | Endpoint | Purpose |
+```text
+Intro-To-Backend/
+│
+├── backend/
+│   └── src/
+│       ├── config/
+│       │   ├── constants.js
+│       │   └── database.js
+│       │
+│       ├── controllers/
+│       │   ├── post.controller.js
+│       │   └── user.controller.js
+│       │
+│       ├── models/
+│       │   ├── post.model.js
+│       │   └── user.model.js
+│       │
+│       ├── routes/
+│       │   ├── post.route.js
+│       │   └── user.route.js
+│       │
+│       ├── app.js
+│       └── index.js
+│
+├── .env
+├── .gitignore
+├── package.json
+└── README.md
+```
+
+## ⚙️ Getting Started
+
+Follow these steps to set up and run the project locally.
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/harshitjaincodes/intro-to-backend.git
+cd intro-to-backend
+```
+
+### 2. Install Dependencies
+
+```bash
+npm install
+```
+
+### 3. Configure Environment Variables
+
+Create a `.env` file in the root directory and add the following configuration:
+
+```env
+PORT=4000
+MONGODB_URI=your_mongodb_atlas_connection_string
+```
+
+Replace the placeholder with your MongoDB Atlas connection string.
+
+**Important:** Never commit your `.env` file or expose your database credentials publicly.
+
+### 4. Start the Development Server
+
+```bash
+npm run dev
+```
+
+Once the server starts successfully, it will be available at:
+
+```text
+http://localhost:4000
+```
+
+## 📌 API Endpoints
+
+The application provides REST API endpoints for user authentication and post management.
+
+### 👤 User Authentication
+
+**Base URL:** `/api/v1/users`
+
+| Method | Endpoint | Description |
 |---|---|---|
-| GET | `/api/users` | List users |
-| POST | `/api/users` | Create a user |
-| GET | `/api/users/:id` | Get one user |
-| PUT | `/api/users/:id` | Update a user |
-| DELETE | `/api/users/:id` | Delete a user |
+| `POST` | `/register` | Register a new user |
+| `POST` | `/login` | Authenticate an existing user |
+| `POST` | `/logout` | Log out the current user |
+| `DELETE` | `/delete-account` | Delete the user account |
 
-### Example POST body
-```json
-{
-  "name": "Alex Example",
-  "email": "alex@example.com",
-  "age": 20
-}
-```
+### 📝 Posts Management (CRUD)
 
-### Example PUT body
-```json
-{
-  "name": "Alex Updated",
-  "age": 21
-}
-```
+**Base URL:** `/api/v1/posts`
 
-## GitHub
-Create a new **public** repository on GitHub (do not initialize it with a README if you already have this project locally), then run:
-```powershell
-git init
-git add .
-git commit -m "Initial backend CRUD API"
-git branch -M main
-git remote add origin https://github.com/YOUR-USERNAME/YOUR-REPOSITORY.git
-git push -u origin main
-```
-Replace the remote URL with your own repository URL. Never commit `.env` or share database credentials.
+| Method | Endpoint | Description |
+|---|---|---|
+| `POST` | `/create` | Create a new post |
+| `GET` | `/getPosts` | Retrieve all posts |
+| `PATCH` | `/update/:id` | Update an existing post |
+| `DELETE` | `/delete/:id` | Delete a post |
 
-## Notes
-- This starter includes CRUD APIs and basic validation/error handling.
-- It does not include user authentication; add it only if your assignment/tutorial specifically requires it.
+## 🧪 API Testing
+
+The API endpoints can be tested using **Postman** or **Thunder Client**.
+
+1. Start the development server using `npm run dev`.
+2. Open Postman or Thunder Client.
+3. Set the request URL to `http://localhost:4000`.
+4. Select the appropriate HTTP method and API endpoint.
+5. For requests containing JSON data, set the header:
+
+   ```text
+   Content-Type: application/json
+   ```
+
+6. Send the request and inspect the response.
+
+## 🔐 Security
+
+- Passwords are hashed using Bcrypt before being stored.
+- Database credentials are managed through environment variables.
+- The `.env` file should be excluded from version control.
+
+## 👨‍💻 Author
+
+**Shubham Kataria**
+
+
+---
+
+*Developed as a backend development project to explore REST APIs, Express.js, MongoDB, and user authentication.*
